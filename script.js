@@ -13,7 +13,7 @@ window.addEventListener("load", function () {
 
     // Effect Setting
     let size = canvas.width < canvas.height ? canvas.width * 0.3 : canvas.height * 0.3;
-    const maxLevel = 4;
+    const maxLevel = 5;
     const branches = 2;
 
     let sides = 5;
@@ -23,7 +23,24 @@ window.addEventListener("load", function () {
     let lineWidth = Math.floor(Math.random() * 20 + 10)
 
     // Controls
-    const randomizeButton = document.getElementById("randomizeButton")
+    const randomizeButton = document.getElementById("randomizeButton");
+    const resetBtn = document.getElementById("resetBtn");
+    const slider_spread = document.getElementById("spread");
+    const label_spread = document.querySelector("[for='spread']");
+    const slider_sides = document.getElementById("sides");
+    const label_sides = document.querySelector("[for='sides']");
+
+
+    slider_spread.addEventListener("change", function (e) {
+        spread = e.target.value;
+        updateSliders();
+        drawFractal();
+    })
+    slider_sides.addEventListener("change", function (e) {
+        sides = e.target.value;
+        updateSliders();
+        drawFractal();
+    })
 
     function drawBranch(level) {
         if (level > maxLevel) return;
@@ -63,6 +80,8 @@ window.addEventListener("load", function () {
             drawBranch(0)
         }
         ctx.restore()
+        randomizeButton.style.backgroundColor = color;
+
     }
     drawFractal()
 
@@ -72,12 +91,43 @@ window.addEventListener("load", function () {
         spread = Math.random() * 2.9 + 0.1;
         color = "hsl(" + Math.random() * 360 + " , 100%, 50%)";
         lineWidth = Math.floor(Math.random() * 20 + 10)
-
     }
-
     randomizeButton.addEventListener("click", function () {
-        randomizeFractal()
-        drawFractal()
+        randomizeFractal();
+        updateSliders();
+        drawFractal();
+    });
 
+    function resetFractal() {
+        sides = 5;
+        scale = 0;
+        spread = 0.7;
+        color = "hsl(290 , 100%, 50%)";
+        lineWidth = 15;
+    }
+    resetBtn.addEventListener("click", function () {
+        resetFractal();
+        updateSliders();
+        drawFractal();
     })
+
+    function updateSliders() {
+        slider_spread.value = spread;
+        label_spread.innerText = "Spread: " + Number(spread).toFixed(1);
+
+        slider_sides.value = sides;
+        label_sides.innerText = "Sides: " + Number(sides);
+    }
+    updateSliders();
+
+    window.addEventListener("resize", function () {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        size = canvas.width < canvas.height ? canvas.width * 0.3 : canvas.height * 0.3;
+        drawFractal()
+        ctx.shadowColor = "rgba(0,0,0,0.7)";
+        ctx.shadowOffsetX = 10;
+        ctx.shadowOffSetY = 5;
+        ctx.shadowBlur = 10;
+    });
 });
