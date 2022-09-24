@@ -5,8 +5,27 @@
 }
 
 #canvas1 {
-    background-color: blue;
+    background-color: black;
     position: absolute;
-    left: 0;
-    top: 0;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#controls {
+    position: absolute;
+    padding: 10px;
+    border: 2px solid white;
+    left: 20px;
+    top: 20px;
+    width: 250px;
+    background-color: rgba(255, 255, 255, .15);
+}
+
+#controls button {
+    padding: 10px;
+    width: 225px;
+    font-size: 20px;
+    cursor: pointer;
+
 }
