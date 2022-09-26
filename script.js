@@ -115,8 +115,6 @@ window.addEventListener("load", function () {
         slider_spread.value = spread;
         label_spread.innerText = "Spread: " + Number(spread).toFixed(1);
 
-        slider_sides.value = sides;
-        label_sides.innerText = "Sides: " + Number(sides);
     }
     updateSliders();
 
