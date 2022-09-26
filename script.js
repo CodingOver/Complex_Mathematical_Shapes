@@ -74,7 +74,7 @@ window.addEventListener("load", function () {
         ctx.save();
         ctx.lineWidth = lineWidth;
         ctx.strokeStyle = color;
-        ctx.translate(canvas.width / 2, canvas.width / 2);
+        ctx.translate(canvas.width / 2, canvas.height / 2);
         for (let i = 0; i < sides; i++) {
             ctx.rotate((Math.PI * 2) / sides)
             drawBranch(0)
