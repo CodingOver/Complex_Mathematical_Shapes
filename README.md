@@ -15,4 +15,4 @@ I Built This generator using **HTML5 Canvas**
 > - [x] `UI Controls`
 > - [x] `Clean up The Code`
 
-[See Demo](https://codingover.github.io/Complex_Mathematical_Shapes/)
+[Preview Link](https://codepen.io/codingover/full/dyeZoON)
