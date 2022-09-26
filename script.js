@@ -17,7 +17,7 @@ window.addEventListener("load", function () {
     const branches = 2;
 
     let sides = 5;
-    let scale = .5;
+    let scale = 0.4;
     let spread = 1.5;
     let color = "hsl(" + Math.random() * 360 + " , 100%, 50%)";
     let lineWidth = Math.floor(Math.random() * 20 + 10)
@@ -29,7 +29,15 @@ window.addEventListener("load", function () {
     const label_spread = document.querySelector("[for='spread']");
     const slider_sides = document.getElementById("sides");
     const label_sides = document.querySelector("[for='sides']");
+    const slider_scale = document.getElementById("scale");
+    const label_scale = document.querySelector("[for='scale']");
 
+
+    slider_scale.addEventListener("change", function (e) {
+        scale = e.target.value;
+        updateSliders();
+        drawFractal();
+    })
 
     slider_spread.addEventListener("change", function (e) {
         spread = e.target.value;
@@ -87,7 +95,8 @@ window.addEventListener("load", function () {
 
     function randomizeFractal() {
         sides = Math.floor(Math.random() * 7 + 2);
-        scale = Math.random() * 0.2 + 0.4;
+        scale = Math.random() * 0.3 + 0.4;
+        console.log(scale)
         spread = Math.random() * 2.9 + 0.1;
         color = "hsl(" + Math.random() * 360 + " , 100%, 50%)";
         lineWidth = Math.floor(Math.random() * 20 + 10)
@@ -101,7 +110,7 @@ window.addEventListener("load", function () {
     function resetFractal() {
         sides = 5;
         scale = 0;
-        spread = 0.7;
+        spread = 0.5;
         color = "hsl(290 , 100%, 50%)";
         lineWidth = 15;
     }
@@ -112,7 +121,14 @@ window.addEventListener("load", function () {
     })
 
     function updateSliders() {
+        slider_scale.value = scale;
+        label_scale.innerHTML = "Scale: " + Number(scale).toFixed(1);
+
+        slider_sides.value = sides;
+        label_sides.innerText = "Sides: " + sides;
+
         slider_spread.value = spread;
+
         label_spread.innerText = "Spread: " + Number(spread).toFixed(1);
 
     }
